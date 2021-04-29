@@ -28,8 +28,6 @@ class Dragon {
             down: false,
             shoot: false
         }
-
-
     }
 
     draw() {
@@ -49,11 +47,15 @@ class Dragon {
     isLimit() {
         if (this.y + this.h >= this.ctx.canvas.height) {
             this.y = 420;
+            this.vy = 0;
         }
         if (this.x + this.w >= this.ctx.canvas.width) {
             this.x = this.ctx.canvas.width - this.w;
         }
-        //incluir que no pase de x=0;
+        if (this.x < 0) {
+            this.x = 0;
+            this.vx = 0;
+        }
     }
 
     //se anima el pj, se pasan las acciones
@@ -118,11 +120,11 @@ class Dragon {
         this.ay = this.actions.up ? -0.2 : 0;
 
         if (this.actions.left) {
-            this.ax -= 0.05;
+            this.ax = -0.05;
         } else if (this.actions.right) {
             this.ax = 0.05;
         } else {
-            this.ax = 0;
+            this.vx *= 0.5;
         }
 
         if (this.actions.down) {
