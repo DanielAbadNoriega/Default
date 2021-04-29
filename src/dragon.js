@@ -47,7 +47,7 @@ class Dragon {
     isLimit() {
         if (this.y + this.h >= this.ctx.canvas.height) {
             this.y = 420;
-            this.vy = 0;
+            this.vy = 0; //hay que igualar a 0 para que deje de acumularse
         }
         if (this.x + this.w >= this.ctx.canvas.width) {
             this.x = this.ctx.canvas.width - this.w;
